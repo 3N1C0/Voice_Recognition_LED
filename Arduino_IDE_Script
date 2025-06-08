@@ -1,0 +1,29 @@
+/*
+ */
+const int redLed = 2;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(redLed, OUTPUT);
+}
+
+void loop() {
+  if (Serial.available() > 0) {
+    String msg = Serial.readString();
+    
+    if (msg == "ON"){
+      digitalWrite(redLed, HIGH);
+    }
+    else if (msg == "OFF"){
+      digitalWrite(redLed, LOW);
+    }
+    else if (msg == "BLINK"){
+      for (int i = 0; i < 3; i++) {  
+        digitalWrite(redLed, HIGH);
+        delay(100);
+        digitalWrite(redLed, LOW);
+        delay(100);
+      }
+    }
+  }
+}
